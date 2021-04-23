@@ -1,0 +1,19 @@
+sortByValue()
+input size: n = length of the list of developers
+critical section: lines 96-103
+complexity class: O(n^2)
+
+averageLinesOfCode()
+input size: n = length of the list of developers
+critical section: line 116
+complexity class: O(n)
+
+setQualityGrade()
+input size: n = length of the list of developers
+critical section: lines 128-139
+complexity class: O(n)
+
+setQuantityRankings()
+input size: n = length of the list of developers
+critical section: lines 153-158
+complexity class: O(n^2)

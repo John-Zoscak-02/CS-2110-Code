@@ -1,0 +1,98 @@
+@startuml
+'https://plantuml.com/class+diagram
+
+    User -[hidden]-> BackgroundImage
+
+    BackgroundImage -[hidden]> Feed
+    Feed -[hidden]> Rating
+
+class User {
+    - userName : String
+    - memesCreated : ArrayList<Meme>
+    - memesViewed : ArrayList<Meme>
+    --
+    +  getUserName() : String
+    +  setUserName(String userName)
+    +  getMemesCreated() : ArrayList<Meme>
+    +  setMemesCreated(ArrayLis<Meme> memesCreated)
+    +  getMemesViewed() : ArrayList<Meme>
+    +  setMemesViewed(ArrayLis<Meme> memesViewed)
+    +  rateMeme(Meme meme, int rating)
+    +  createMeme(BackgroundImage bgi, String string) : Meme
+    +  deleteMeme(Meme meme) : boolean
+    +  shareMeme(Meme meme, Feed feed)
+    +  rateNextMemeFromFeed(Feed feed, int ratingScore)
+    +  calculateReputation() : double
+    +  toString() : String
+    +  equals(Object object) : boolean
+}
+
+
+class Meme {
+    - creator : User
+    - backgroundImage : BackgroundImage
+    - ratings : Rating[]
+    - caption : String
+    - captionVerticalAlign : String
+    - shared : boolean
+    --
+    +  getCreator() : User
+    +  setCreator(User creator)
+    +  getBackgroundImage() : BackgroundImage
+    +  setBackgroundImage(BackgroundImage backgroundImage)
+    +  getRatings() : Rating[]
+    +  setRatings(Rating[] ratings)
+    +  getCaption() : String
+    +  setCaption(String caption)
+    +  getCaptionVerticalAlign() : String
+    +  setCaptionVerticalAlign(String captionVerticalAlign)
+    +  getShared() : boolean
+    +  setShared(boolean shared)
+    +  addRating(Rating rating) : boolean
+    +  calculateOverallRating() : double
+    +  toString() : String
+    +  equals(Object object) : boolean
+}
+
+
+class Rating {
+    - score : int
+    - user : User
+    --
+    +  getScore() : int
+    +  setScore(int score)
+    +  getUser() : User
+    +  setUser(User user)
+    +  toString() : String
+    +  equals(Object object) : boolean
+}
+
+
+
+class BackgroundImage {
+    - imageFileName : String
+    - title : String
+    - description : String
+    --
+    +  getImageFileName() : String
+    +  setImageFileName(String imageFileName)
+    +  getTitle() : String
+    +  setTitle(String title)
+    +  getDescription() : String
+    +  setDescription(String description)
+    +  toString() : String
+    +  equals(Object object) : boolean
+}
+
+
+
+class Feed  {
+    - memes : ArrayList<Meme>
+    --
+    +  getMemes() : ArrayList<Meme>
+    +  setMemes(ArrayList<Meme> memes)
+    +  getNewMeme(User user) : Meme
+    +  toString() : String
+}
+
+@enduml

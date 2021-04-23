@@ -1,0 +1,8 @@
+logn 0.000002sec 0.000004sec 0.000006sec 0.000008sec
+sqrt(n) 0.00001sec 0.0001sec 0.001sec 0.01sec
+n 0.00001sec 0.01sec 1sec 1.67mins
+nlogn 0.0002sec 0.04sec 6sec 13.33mins
+n^2 0.01sec 1.66mins 11.5days 317.09yrs
+n^3 1s 11.574days 31709.8years 31709791983years
+2^n 4.0197E16years 6.34E2996years 3.17E30089years 2.219E30103015years
+n! 29.59E144years 9.03E35645years 5.46E456551years ExeeedsWolframMaxNum
