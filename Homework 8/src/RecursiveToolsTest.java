@@ -50,6 +50,12 @@ public class RecursiveToolsTest {
     }
 
     @Test
+    public void sizeOfListTest4() {
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList("hello", "hello"));
+        assertEquals(2, tools.sizeOfList(arrayList));
+    }
+
+    @Test
     public void stringEqualityTest1() {
         assertTrue(tools.stringEqualityTest("", ""));
     }
@@ -137,6 +143,6 @@ public class RecursiveToolsTest {
     public void listCustomComparison5() {
         ArrayList<String> arrayList1 = new ArrayList<>();
         ArrayList<String> arrayList2 = new ArrayList<>();
-        assertFalse(tools.listCustomComparison(arrayList1, arrayList2));
+        assertTrue(tools.listCustomComparison(arrayList1, arrayList2));
     }
 }

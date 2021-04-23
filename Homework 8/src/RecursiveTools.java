@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,15 +13,26 @@ public class RecursiveTools {
         return temp + reverseString(str);
     }
 
-    public int sizeOfList (ArrayList<String> l) {
-        if (l.size() == 0) {
+    public int sizeOfList(List<String> l) {
+        ArrayList<String> list = new ArrayList<>(l);
+        return sizeOfListHelp(list);
+    }
+
+    private int sizeOfListHelp(ArrayList<String> temp) {
+        if (temp.isEmpty()) {
             return 0;
         }
-        l.remove(0);
-        return 1 + sizeOfList(l);
+        temp.remove(0);
+        return 1 + sizeOfList(temp);
     }
 
     public boolean stringEqualityTest(String s1, String s2) {
+        if (s1.length() == 0) {
+            return s2.length() == 0;
+        }
+        if (s2.length() == 0) {
+            return false;
+        }
         char temp1 = s1.charAt(s1.length()-1);
         char temp2 = s2.charAt(s2.length()-1);
         s1 = (new StringBuilder(s1)).deleteCharAt(s1.length()-1).toString();
@@ -30,31 +42,33 @@ public class RecursiveTools {
 
 
     public boolean listEqualityTest(ArrayList<String> l1, ArrayList<String> l2) {
-        if (l1.size() != l2.size()) {
-            return false;
-        }
-        return listEqualityTest(l1,l2,0);
+        ArrayList<String> list1 = new ArrayList<>(l1);
+        ArrayList<String> list2 = new ArrayList<>(l2);
+        return listEqualityTestHelp(list1, list2);
     }
 
-    private boolean listEqualityTest(ArrayList<String> l1, ArrayList<String> l2, int i) {
-        if (l1.size() == i && l2.size() == i) {
-            return true;
+    public boolean listEqualityTestHelp(ArrayList<String> l1, ArrayList<String> l2) {
+        if (l1.size() == 0) {
+            return l2.size() == 0;
         }
-        return stringEqualityTest(l1.get(i), l2.get(i)) && listEqualityTest(l1,l2,i+1);
+        if (l2.size() == 0) {
+            return false;
+        }
+        return stringEqualityTest(l1.remove(0), l2.remove(0)) && listEqualityTestHelp(l1, l2);
     }
 
     public boolean listCustomComparison(ArrayList<String>l1, ArrayList<String> l2) {
-        if (sizeOfList((ArrayList<String>) l1.clone()) == 0 || sizeOfList((ArrayList<String>) l1.clone()) == 0) {
-            return false;
+        if (sizeOfList(l1) == 0 && sizeOfList(l2) == 0) {
+            return true;
         }
-        if (sizeOfList((ArrayList<String>) l1.clone()) != sizeOfList((ArrayList<String>) l1.clone())) {
+        if (sizeOfList(l1) != sizeOfList(l2)) {
             return false;
         }
         return listCustomComparison(l1, l2, 0);
     }
 
     private boolean listCustomComparison(ArrayList<String>l1, ArrayList<String> l2, int i) {
-        if (sizeOfList((ArrayList<String>) l1.clone()) == i) {
+        if (sizeOfList(l1) == i) {
             return true;
         }
         if (i % 2 == 1) {

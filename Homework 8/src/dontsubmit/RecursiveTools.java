@@ -25,8 +25,6 @@ public class RecursiveTools {
         return sizeOfList(l, 0);
     }
 
-
-
     private int sizeOfList(List temp, int i) {
         if (temp.size() == i) {
             return 0;
