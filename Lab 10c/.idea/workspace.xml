@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09cb0df1-eacc-4ab0-9c22-10fff83d9908" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Lab 10a/.idea/Lab 10a.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Lab 10a/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Lab 10a/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/Lab 10c.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab 10a/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab 10a/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lab 10a/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab 10a/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619541559085</updated>
       <workItem from="1619541560568" duration="2638000" />
-      <workItem from="1619559880266" duration="365000" />
+      <workItem from="1619559880266" duration="995000" />
     </task>
     <servers />
   </component>
