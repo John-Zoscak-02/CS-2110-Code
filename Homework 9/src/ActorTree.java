@@ -234,7 +234,19 @@ public class ActorTree {
 		 * @return the searched for Actor, or null
 		 */
 		public Actor find(String name) {
-			return null;
+			if (name.compareTo(actor.getPrimaryName()) == 0) {
+				return actor;
+			}
+			else if (name.compareTo(actor.getPrimaryName()) < 0) {
+				if (left == null) {
+					return null;
+				}
+				return left.find(name);
+			}
+			if (right == null) {
+				return null;
+			}
+			return right.find(name);
 		}
 		
 			
@@ -244,7 +256,16 @@ public class ActorTree {
 	     * @return a String representing the in-order traversal of the subtree rooted at this node
 	     */
 		public String inOrder() {
-			return null;
+			if (left == null) {
+				if (right == null) {
+					return actor.toString() + "\n";
+				}
+				return actor.toString() + "\n" + right.inOrder();
+			}
+			if (right == null) {
+				return left.inOrder() + actor.toString() + "\n";
+			}
+			return left.inOrder() + actor.toString() + "\n" + right.inOrder();
 		}
 	}
 	

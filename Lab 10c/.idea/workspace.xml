@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09cb0df1-eacc-4ab0-9c22-10fff83d9908" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Lab 10c.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Lab 10c.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tree Traversals.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +76,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619541559085</updated>
       <workItem from="1619541560568" duration="2638000" />
-      <workItem from="1619559880266" duration="1316000" />
+      <workItem from="1619559880266" duration="1595000" />
     </task>
     <servers />
   </component>
