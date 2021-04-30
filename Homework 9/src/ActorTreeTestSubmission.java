@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ActorTreeTest {
+public class ActorTreeTestSubmission {
 
     private ActorTree actorTree;
 
