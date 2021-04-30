@@ -1,9 +1,9 @@
 /**
  * <p>This is the class you will complete - fill in all the missing method implementations</p>
- * 
+ *
  *  * <p>All the classes have been created for you, you must implement the ActorTree class methods.
  * If your BST works correctly, searches made against it should return in almost no time at all.</p>
- * 
+ *
  * @author Your friendly CS professors
  *
  */
@@ -21,12 +21,17 @@ public class ActorTree {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param name
 	 *            - the name to find
 	 * @return the matching Actor object
 	 */
 	public Actor find(String name) {
+//		if (root != null) {
+//			return root.find(name);
+//		}
+//		return null;
+
 		return find(name, root);
 	}
 
@@ -46,12 +51,16 @@ public class ActorTree {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return an int representing 1 for each node in the tree
-	 * 
+	 *
 	 */
 	public int size() {
-	    return size(root);
+//		if (root != null) {
+//			return root.size();
+//		}
+//	    return 0;
+		return size(root);
 	}
 
 	private int size(Node node) {
@@ -64,10 +73,14 @@ public class ActorTree {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return an int representing the maximum height of any branch
 	 */
 	public int height() {
+//		if (root != null) {
+//			return root.height();
+//		}
+//		return 0;
 		return height(root);
 	}
 
@@ -80,7 +93,7 @@ public class ActorTree {
 
 	/**
 	 * an empty tree is one with no data
-	 * 
+	 *
 	 * @return boolean - True if the tree is empty
 	 */
 	public boolean isEmpty() {
@@ -88,37 +101,54 @@ public class ActorTree {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param a
 	 *            - an Actor object
 	 * @return boolean - True if the element was inserted
 	 */
 	public boolean insert(Actor a) {
+//		if (root != null) {
+//			return root.insert(a);
+//		}
+//		root = new Node(a);
+//		return true;
+		if (root == null) {
+			root = new Node(a);
+			return true;
+		}
 		return insert(a, root);
 	}
 
 	private boolean insert(Actor a, Node node) {
-		if (node == null) {
-			node = new Node(a);
-			return true;
-		}
-		else if (a.getPrimaryName().equals(node.actor.getPrimaryName())) {
+		if (a.getPrimaryName().equals(node.actor.getPrimaryName())) {
 			return false;
 		}
 		else if (a.getPrimaryName().compareTo(node.actor.getPrimaryName()) < 0) {
+			if (node.left == null) {
+				node.left = new Node(a);
+				return true;
+			}
 			return insert(a, node.left);
 		}
 		else {
+			if (node.right == null) {
+				node.right = new Node(a);
+				return true;
+			}
 			return insert(a, node.right);
 		}
 	}
-	
+
 	/**
 	 * In order Traversal
 	 *
 	 * @return a String representing the in-order traversal of this tree
 	 */
 	public String inOrder() {
+//		if (root != null) {
+//			return root.inOrder();
+//		}
+//		return "";
 		return inOrder(root);
 	}
 
@@ -126,13 +156,13 @@ public class ActorTree {
 		if (node == null) {
 			return "";
 		}
-		return inOrder(node.left) + node.actor.toString() + "\n" + inOrder(node.left);
+		return inOrder(node.left) + node.actor.toString() + "\n" + inOrder(node.right);
 	}
 
 	/**
 	 * The Node class is an inner class of the ActorTree This is a Binary Search
 	 * Tree, so each Node will have left and right children
-	 * 
+	 *
 	 * @author Your friendly CS Professors
 	 *
 	 */
@@ -152,7 +182,7 @@ public class ActorTree {
 
 		/**
 		 * Constructor that takes an Actor object
-		 * 
+		 *
 		 * @param a
 		 *            - an Actor left and right children are initialized to null
 		 */
@@ -164,7 +194,7 @@ public class ActorTree {
 
 		/**
 		 * The size method is recursive
-		 * 
+		 *
 		 * @return an int to represent a count of all nodes
 		 */
 		public int size() {
@@ -182,7 +212,7 @@ public class ActorTree {
 
 		/**
 		 * The height method is recursive
-		 * 
+		 *
 		 * @return an int to represent the maximum height of right or left child nodes,
 		 *         plus 1 for the current node
 		 */
@@ -198,10 +228,10 @@ public class ActorTree {
 			}
 			return 1 + Math.max(left.height(), right.height());
 		}
-		
+
 		/**
 		 * The insert method finds the best place to insert the Actor argument
-		 * 
+		 *
 		 * @param a
 		 *            - an Actor to insert
 		 * @return boolean - True if the Actor argument was added, false otherwise
@@ -228,7 +258,7 @@ public class ActorTree {
 
 		/**
 		 * The find method returns an Actor object with a matching name
-		 * 
+		 *
 		 * @param name
 		 *            - the name to search for
 		 * @return the searched for Actor, or null
@@ -248,13 +278,13 @@ public class ActorTree {
 			}
 			return right.find(name);
 		}
-		
-			
-	    /**
-	     * In order Traversal
-	     *
-	     * @return a String representing the in-order traversal of the subtree rooted at this node
-	     */
+
+
+		/**
+		 * In order Traversal
+		 *
+		 * @return a String representing the in-order traversal of the subtree rooted at this node
+		 */
 		public String inOrder() {
 			if (left == null) {
 				if (right == null) {
@@ -268,5 +298,5 @@ public class ActorTree {
 			return left.inOrder() + actor.toString() + "\n" + right.inOrder();
 		}
 	}
-	
+
 }

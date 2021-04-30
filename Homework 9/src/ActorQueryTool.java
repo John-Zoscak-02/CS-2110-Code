@@ -17,7 +17,7 @@ public class ActorQueryTool {
 	// use this value to limit the amount of data loaded into memory
 	// (if your computer is low on memory and locks up when running, 1_000_000 is enough)
 	final static int MAXIMUM_NUMBER_RECORDS = 1_000_000;
-	final static String NAME_TO_FIND = "Rainn Wilson";
+	final static String NAME_TO_FIND = "Kevin Bacon";
 
 	public static void main(String[] args) {
 		//Initialize the DataParser, which will read the file and load the data structures

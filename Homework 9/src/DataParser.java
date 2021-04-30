@@ -42,6 +42,7 @@ public class DataParser {
 
 				} catch (Exception e) {
 					// just skip this line and try to continue
+//					e.printStackTrace();
 					System.out.println("Error generating an Actor object from this line, skipping.");
 				}
 
