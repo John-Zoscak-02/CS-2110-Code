@@ -24,11 +24,6 @@ public class ActorTreeTestSubmission {
         actorTree.insert(new Actor("Bruce Lee"));
         actorTree.insert(new Actor("Brad Pitt"));
         actorTree.insert(new Actor("Burt Lancaster"));
-        actorTree.insert(new Actor("Fred Astaire"));
-        actorTree.insert(new Actor("Fred Astaire"));
-        actorTree.insert(new Actor("Fred Astaire"));
-        actorTree.insert(new Actor("Fred Astaire"));
-        actorTree.insert(new Actor("Fred Astaire"));
     }
 
     @Test

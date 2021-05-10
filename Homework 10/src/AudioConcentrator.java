@@ -74,11 +74,9 @@ public class AudioConcentrator {
     private Microphone partFMicrophone;
 
     private Lock microphoneLock;
-    private Condition activeMicrophoneCondition;
+    private Condition doneWriting;
 
-    private Lock writeLock;
-
-    private Lock getLock;
+    private Lock storeLock;
 
     /**
      * Constructor
@@ -100,11 +98,10 @@ public class AudioConcentrator {
         partFMicrophone = new Microphone(this, 880.00 / 4); // A
 
         microphoneLock = new ReentrantLock();
-        activeMicrophoneCondition = microphoneLock.newCondition();
+        doneWriting = microphoneLock.newCondition();
 
-        writeLock = new ReentrantLock();
+        storeLock = new ReentrantLock();
 
-        getLock = new ReentrantLock();
 
         audioDataStorage = new byte[sampleSize * 8];
     }
@@ -131,11 +128,13 @@ public class AudioConcentrator {
      * Play the recording once all the microphones have finished recording.
      */
     public void playRecording() {
-        Player p = new Player(getAudioDataStorage());
-        Thread t1 = new Thread(p);
-        t1.start();
-        playing = true;
-
+        while (true) {
+                Player p = new Player(getAudioDataStorage());
+                Thread t1 = new Thread(p);
+                t1.start();
+                playing = true;
+                break;
+        }
     }
 
     /**
@@ -144,18 +143,17 @@ public class AudioConcentrator {
      * 
      * TODO: Add appropriate locking
      */
-    public void startMicrophone() throws InterruptedException {
+    public void startMicrophone() {
         microphoneLock.lock();
         try {
-//            while (activeMicrophoneCount == 1) {
-//                activeMicrophoneCondition.await();
-//            }
-            activeMicrophoneCount++;
-            int currentCount = activeMicrophoneCount;
-            System.out.println(currentCount);
+
+            int currentCount = activeMicrophoneCount + 1;
+//            System.out.println(currentCount);
+            activeMicrophoneCount = currentCount;
         } finally {
             microphoneLock.unlock();
         }
+
 
     }
 
@@ -167,10 +165,10 @@ public class AudioConcentrator {
     public void endMicrophone() {
         microphoneLock.lock();
         try {
-            activeMicrophoneCount--;
-            int currentCount = activeMicrophoneCount;
-            System.out.println(currentCount);
-//            activeMicrophoneCondition.signalAll();
+            int currentCount = activeMicrophoneCount - 1;
+//            System.out.println(currentCount);
+            activeMicrophoneCount = currentCount;
+            doneWriting.signalAll();
         } finally {
             microphoneLock.unlock();
         }
@@ -184,19 +182,19 @@ public class AudioConcentrator {
      * @param data The data to write to the array
      */
     public void storeData(byte[] data) {
-        writeLock.lock();
+        storeLock.lock();
         try {
-            for (int i = 0; i < data.length; i++) {
+            for (byte datum : data) {
                 if (storageTail == audioDataStorage.length) {
                     // we need to grow our array
                     growStorage();
 
                 }
-                audioDataStorage[storageTail] = data[i];
+                audioDataStorage[storageTail] = datum;
                 storageTail++;
             }
         }finally {
-            writeLock.unlock();
+            storeLock.unlock();
         }
 
     }
@@ -214,19 +212,25 @@ public class AudioConcentrator {
 
     /**
      * Returns the data storage array.
-     * 
+     *
      * TODO: Add appropriate locking
-     * 
+     *
      * @return The data storage array
      */
     public byte[] getAudioDataStorage() {
-        getLock.lock();
-        try {
-            return this.audioDataStorage;
-        } finally {
-            getLock.lock();
+        microphoneLock.lock();
+        while (true) {
+            try {
+                Thread.sleep(100);
+                while (activeMicrophoneCount != 0) {
+                    doneWriting.await();
+                }
+                return this.audioDataStorage;
+            } catch (InterruptedException ignored) {}
+            finally {
+                microphoneLock.unlock();
+            }
         }
-
     }
 
     /**

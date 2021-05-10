@@ -69,11 +69,7 @@ public class Microphone implements Runnable {
 	 * requested, then sets the microphone as done (by calling endMicrophone().
 	 */
 	public void run() {
-		try {
-			concentrator.startMicrophone();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		concentrator.startMicrophone();
 		for (int i = numberOfSamplesToCollect; i >0 && !Thread.interrupted(); i--) {
 			listen();				
 		}

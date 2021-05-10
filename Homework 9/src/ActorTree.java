@@ -27,12 +27,12 @@ public class ActorTree {
 	 * @return the matching Actor object
 	 */
 	public Actor find(String name) {
-//		if (root != null) {
-//			return root.find(name);
-//		}
-//		return null;
+		if (root != null) {
+			return root.find(name);
+		}
+		return null;
 
-		return find(name, root);
+//		return find(name, root);
 	}
 
 	private Actor find(String name, Node node) {
@@ -56,11 +56,11 @@ public class ActorTree {
 	 *
 	 */
 	public int size() {
-//		if (root != null) {
-//			return root.size();
-//		}
-//	    return 0;
-		return size(root);
+		if (root != null) {
+			return root.size();
+		}
+	    return 0;
+//		return size(root);
 	}
 
 	private int size(Node node) {
@@ -77,11 +77,11 @@ public class ActorTree {
 	 * @return an int representing the maximum height of any branch
 	 */
 	public int height() {
-//		if (root != null) {
-//			return root.height();
-//		}
-//		return 0;
-		return height(root);
+		if (root != null) {
+			return root.height();
+		}
+		return 0;
+//		return height(root);
 	}
 
 	private int height( Node node ) {
@@ -107,16 +107,16 @@ public class ActorTree {
 	 * @return boolean - True if the element was inserted
 	 */
 	public boolean insert(Actor a) {
-//		if (root != null) {
-//			return root.insert(a);
-//		}
-//		root = new Node(a);
-//		return true;
-		if (root == null) {
-			root = new Node(a);
-			return true;
+		if (root != null) {
+			return root.insert(a);
 		}
-		return insert(a, root);
+		root = new Node(a);
+		return true;
+//		if (root == null) {
+//			root = new Node(a);
+//			return true;
+//		}
+//		return insert(a, root);
 	}
 
 	private boolean insert(Actor a, Node node) {
@@ -145,11 +145,11 @@ public class ActorTree {
 	 * @return a String representing the in-order traversal of this tree
 	 */
 	public String inOrder() {
-//		if (root != null) {
-//			return root.inOrder();
-//		}
-//		return "";
-		return inOrder(root);
+		if (root != null) {
+			return root.inOrder();
+		}
+		return "";
+//		return inOrder(root);
 	}
 
 	private String inOrder(Node node) {
